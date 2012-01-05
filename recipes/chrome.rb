@@ -4,3 +4,7 @@ pivotal_workstation_package "Google Chrome" do
   checksum "7daa2dc5c46d9bfb14f1d7ff4b33884325e5e63e694810adc58f14795165c91a"
   action :install
 end
+
+execute "chmod google chrome" do
+  command "chown -R #{WS_USER}:admin #{node[:pivotal_workstation][:base_dir]}"
+end
