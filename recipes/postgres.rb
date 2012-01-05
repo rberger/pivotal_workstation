@@ -81,7 +81,7 @@ block do
     begin
       s = TCPSocket.open('localhost',postgres_port)
     rescue => e
-      raise "postgres is not running: " << e
+      raise "postgres is not running: " << e.to_s
     end
     s.close
     `sudo -u #{WS_USER} psql < /dev/null`
