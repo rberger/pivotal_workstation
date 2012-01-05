@@ -42,8 +42,8 @@ unless File.exists?(menu_meters_dst)
       require 'plist'
       `plutil -convert xml1 #{plist_file}`
       ui_plist = Plist::parse_xml(plist_file)
-      ui_plist['menuExtras'] ||= Array.new
-      Array.wrap(ui_plist['menuExtras']).unshift(
+      ui_plist['menuExtras'] = Array.new if ui_plist['menuExtras'].nil? || ui_plist['menuExtras'].empty?
+      ui_plist['menuExtras'].unshift(
       '/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMeterNet.menu',
       '/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMeterDisk.menu',
       '/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMeterMem.menu',
