@@ -26,6 +26,16 @@ execute "move existing vim_home out of the way if necessary" do
 end
 
 git "#{node["vim_home"]}" do
+  only_if { system("test ! -d #{node["vim_home"]}") }
+  repository "git@github.com:casecommons/vim-config.git"
+  branch "master"
+  revision node["vim_hash"] || "HEAD"
+  action :checkout
+  user WS_USER
+  enable_submodules true
+end
+
+git "#{node["vim_home"]}" do
   only_if {
     system("test ! -d #{node["vim_home"]} || cd #{node["vim_home"]} && git remote -v | grep pivotal/vim-config")
   }
