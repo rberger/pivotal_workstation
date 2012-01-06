@@ -4,6 +4,8 @@ include_recipe "pivotal_workstation::git"
 
 # https://github.com/mxcl/homebrew/pull/8394
 # default macvim doesn't compile yet with xcode 4.2
+
+brew_remove("macvim")
 brew_install("macvim", :brew_args => "--HEAD")
 
 # There may be multiple macvims; try to find the latest one
