@@ -59,7 +59,7 @@ brew_install "ctags"
 execute "compile command-t" do
   only_if "test -d #{node["vim_home"]}/bundle/command-t/ruby/command-t"
   cwd "#{node["vim_home"]}/bundle/command-t/ruby/command-t"
-  command "ruby extconf.rb && make"
+  command "rvm use system && ruby extconf.rb && make"
   user WS_USER
 end
 
