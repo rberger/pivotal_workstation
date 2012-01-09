@@ -1,6 +1,10 @@
 class Chef::Recipe
   def brew_install(package, opts={})
     include_recipe "pivotal_workstation::homebrew"
+    sha = opts.delete("sha")
+    specific_version = "https://raw.github.com/mxcl/homebrew/#{sha}/Library/Formula/#{package}.rb"
+    package = specific_version if reference
+
     prefix_command = (opts[:prefix_command]) ? "#{opts[:prefix_command]} && " : ""
     execute "brew install #{package} #{opts[:brew_args]}" do
       user WS_USER
