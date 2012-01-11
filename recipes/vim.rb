@@ -6,7 +6,7 @@ include_recipe "pivotal_workstation::git"
 # default macvim doesn't compile yet with xcode 4.2
 
 brew_remove("macvim")
-brew_install("macvim", :brew_args => "--HEAD", :prefix_command => "rvm use system")
+brew_install("macvim", :brew_args => "--HEAD", :prefix_command => "rvm system exec")
 
 # There may be multiple macvims; try to find the latest one
 # & link that to /Applications
