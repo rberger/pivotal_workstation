@@ -13,7 +13,7 @@ brew_install("macvim", :brew_args => "--HEAD", :prefix_command => "rvm use syste
 ruby_block "Link MacVim to /Applications" do
   block do
     macvim_app=Dir["/usr/local/Cellar/macvim/*/MacVim.app"].last
-    if macvim_app.present? && File.exists?(macvim_app)
+    if macvim_app && File.exists?(macvim_app)
       system("ln -s #{macvim_app} /Applications/")
     end
   end
